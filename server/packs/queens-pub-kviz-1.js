@@ -83,7 +83,7 @@ const ROUNDS = [
       },
       {
         text: "Která aktivita se v Queensu pravidelně koná ve vybrané soboty?",
-        options: ["Beer Pong", "Karaoke soutěž", "Pubová šipková liga"],
+        options: ["Beerpong", "Karaoke soutěž", "Pubová šipková liga"],
         correct: 0,
       },
       {
@@ -91,7 +91,7 @@ const ROUNDS = [
         options: [
           "DJs a živá hudba",
           "Pouze sportovní přenosy",
-          "Pouze Beer Pong",
+          "Pouze Beerpong",
         ],
         correct: 0,
       },
@@ -219,17 +219,17 @@ const ROUNDS = [
       },
       {
         text: "Která z těchto akcí je spojena se středečním programem Queensu?",
-        options: ["Turbo Středa", "Večer na Ginu", "Beer Pong"],
+        options: ["Turbo Středa", "Večer na Ginu", "Beerpong"],
         correct: 0,
       },
       {
         text: "Která z akcí je v programu nejnovější?",
-        options: ["Akční čtvrtek", "Turbo Hodina", "Beer Pong"],
+        options: ["Akční čtvrtek", "Turbo Hodina", "Beerpong"],
         correct: 0,
       },
       {
         text: "Která z těchto aktivit je spojena se sobotním programem Queensu?",
-        options: ["Beer Pong", "Turbo středa", "Akční čtvrtek"],
+        options: ["Beerpong", "Turbo středa", "Akční čtvrtek"],
         correct: 0,
       },
       {
