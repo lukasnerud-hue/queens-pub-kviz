@@ -157,7 +157,15 @@ class GameState {
       choice: choiceIndex,
       answeredAt: Date.now(),
     };
-    this._emit();
+
+    const totalTeams = Object.keys(this.state.teams).length;
+    const answeredCount = Object.keys(this.state.answers[key]).length;
+    if (totalTeams > 0 && answeredCount >= totalTeams) {
+      // everyone who's registered has answered — no reason to wait out the clock
+      this._reveal();
+    } else {
+      this._emit();
+    }
     return { ok: true, choice: choiceIndex };
   }
 
