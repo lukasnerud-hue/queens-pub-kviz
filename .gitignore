@@ -2,3 +2,4 @@ node_modules/
 gamestate.save.json
 HOST_KEY.txt
 .env
+.DS_Store
