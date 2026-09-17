@@ -1,4 +1,4 @@
-// Otázky pro Queen's Pub Kvíz #1 — přepsané z "QUEENS KVÍZ_01.pdf".
+// Balíček otázek: Queen's Pub Kvíz #1 — přepsané z "QUEENS KVÍZ_01.pdf".
 // correct: index (0 = A, 1 = B, 2 = C) správné odpovědi.
 
 const ROUNDS = [
@@ -270,4 +270,8 @@ const ROUNDS = [
   },
 ];
 
-module.exports = { ROUNDS };
+module.exports = {
+  id: "queens-pub-kviz-1",
+  title: "Queen's Pub Kvíz #1",
+  rounds: ROUNDS,
+};

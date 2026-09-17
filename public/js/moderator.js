@@ -177,6 +177,29 @@ function render() {
   const s = latestState;
 
   if (s.phase === "LOBBY") {
+    if (s.availablePacks && s.availablePacks.length > 1) {
+      const label = document.createElement("label");
+      label.className = "field";
+      label.innerHTML = `<label>Téma kvízu</label>`;
+      const select = document.createElement("select");
+      select.className = "pack-select";
+      s.availablePacks.forEach((p) => {
+        const opt = document.createElement("option");
+        opt.value = p.id;
+        opt.textContent = p.title;
+        opt.selected = p.id === s.packId;
+        select.appendChild(opt);
+      });
+      select.addEventListener("change", () => call("host:selectPack", select.value));
+      label.appendChild(select);
+      wrap.appendChild(panel([label]));
+    } else {
+      const themeNote = document.createElement("p");
+      themeNote.className = "muted";
+      themeNote.textContent = `Téma: ${s.packTitle}`;
+      wrap.appendChild(panel([themeNote]));
+    }
+
     const p1 = document.createElement("p");
     p1.textContent = `Přihlášeno ${s.teamCount} týmů. Ukaž hráčům PIN a ať se připojí na adrese téhle appky.`;
     const startBtn = bigBtn("Uzamknout registraci a spustit Kolo 1", () => call("host:lockAndStart"), {

@@ -44,6 +44,13 @@ function renderLobby() {
   h1.textContent = "Přidej se ke hře";
   app.appendChild(h1);
 
+  if (latestState.packTitle) {
+    const theme = document.createElement("div");
+    theme.className = "tag gold";
+    theme.textContent = latestState.packTitle;
+    app.appendChild(theme);
+  }
+
   const row = document.createElement("div");
   row.className = "row";
   row.style.alignItems = "flex-start";

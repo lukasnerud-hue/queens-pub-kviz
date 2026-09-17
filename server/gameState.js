@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
-const { ROUNDS } = require("./questions");
+const { PACKS, getPack, packSummaries } = require("./packs");
 
 const QUESTION_DURATION_MS = 3 * 60 * 1000;
 const POINTS_FOR_RANK = [5, 3, 1]; // 1st, 2nd, 3rd fastest correct team
@@ -21,6 +21,7 @@ function freshState() {
     pin: randomPin(),
     phase: "LOBBY", // LOBBY | ROUND_INTRO | QUESTION | REVEAL | PAUSE | FINAL
     registrationLocked: false,
+    packId: PACKS[0].id,
     round: 1,
     questionIndex: -1, // index within current round's question list
     questionEndsAt: null,
@@ -62,8 +63,12 @@ class GameState {
     this.onChange(this.publicState());
   }
 
+  _currentPack() {
+    return getPack(this.state.packId);
+  }
+
   _currentRound() {
-    return ROUNDS[this.state.round - 1];
+    return this._currentPack().rounds[this.state.round - 1];
   }
 
   _currentQuestion() {
@@ -177,6 +182,17 @@ class GameState {
   }
 
   // ---------- host actions ----------
+
+  selectPack(packId) {
+    if (this.state.phase !== "LOBBY" || this.state.registrationLocked) {
+      return { error: "Téma lze vybrat jen před spuštěním hry." };
+    }
+    const pack = PACKS.find((p) => p.id === packId);
+    if (!pack) return { error: "Neznámé téma." };
+    this.state.packId = pack.id;
+    this._emit();
+    return { ok: true };
+  }
 
   lockRegistrationAndStartRound1() {
     if (this.state.phase !== "LOBBY") return { error: "Hra už byla spuštěna." };
@@ -341,9 +357,12 @@ class GameState {
       pin: s.pin,
       phase: s.phase,
       registrationLocked: s.registrationLocked,
+      packId: s.packId,
+      packTitle: this._currentPack().title,
+      availablePacks: packSummaries(),
       round: s.round,
       roundTitle: round ? round.title : null,
-      totalRounds: ROUNDS.length,
+      totalRounds: this._currentPack().rounds.length,
       questionIndex: s.questionIndex,
       totalQuestions,
       questionEndsAt: s.questionEndsAt,

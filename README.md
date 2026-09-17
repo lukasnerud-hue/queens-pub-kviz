@@ -22,7 +22,17 @@ Hráči se připojují přes **PIN hry** (4místné číslo), který appka vygen
 9. Po poslední otázce kola 2 se zobrazí **finální pořadí a vítěz**.
 10. Na konci večera moderátor může kliknout **"Nová hra"** — vymaže týmy a skóre, vygeneruje nový PIN pro příští kvíz.
 
-Otázky pro kolo 1 ("Queens, který znáš") a kolo 2 ("Queens Lore") jsou v [`server/questions.js`](server/questions.js) — je jich 20 + 20, přepsané z `QUEENS KVÍZ_01.pdf`. Pro další kvízový večer stačí do tohoto souboru doplnit nové otázky ve stejném formátu (`text`, `options` — pole 3 možností, `correct` — index 0/1/2 správné odpovědi).
+## Témata (balíčky otázek)
+
+Otázky jsou organizované do **balíčků** ve složce [`server/packs/`](server/packs/) — každý balíček je jeden soubor s vlastními 2 koly po 20 otázkách. Aktuálně existuje jeden: [`queens-pub-kviz-1.js`](server/packs/queens-pub-kviz-1.js) (přepsaný z `QUEENS KVÍZ_01.pdf`).
+
+Pokud existuje **víc než jeden** balíček, objeví se na moderátorské Lobby obrazovce (ještě před spuštěním hry) rozbalovací nabídka **"Téma kvízu"**, kde si moderátor vybere, s jakým tématem se bude hrát. Dokud existuje jen jeden balíček, appka ho použije automaticky a výběr se nezobrazuje.
+
+Přidání nového tématu:
+1. Vytvoř nový soubor v `server/packs/` (např. `vanocni-special.js`) se stejnou strukturou jako `queens-pub-kviz-1.js`: `module.exports = { id, title, rounds: [{ title, questions: [{ text, options: [A,B,C], correct: 0|1|2 }, ...] }, ...] }`
+2. Přidej ho do seznamu v [`server/packs/index.js`](server/packs/index.js)
+
+Otázky nemusíš psát sám — stačí mi poslat PDF nebo text nových otázek a já balíček připravím a nasadím.
 
 ## Lokální test na vlastním počítači
 
@@ -60,7 +70,7 @@ app/
   server/
     index.js       — Express + Socket.IO server, propojení všech obrazovek
     gameState.js    — herní logika (kola, otázky, časomíra, bodování)
-    questions.js    — banka otázek (kolo 1 + kolo 2)
+    packs/          — balíčky (témata) otázek, viz sekce "Témata" výše
   public/
     index.html + js/player.js       — obrazovka pro hráče
     moderator.html + js/moderator.js — obrazovka pro moderátora

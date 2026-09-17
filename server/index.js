@@ -95,6 +95,7 @@ io.on("connection", (socket) => {
     };
   }
 
+  socket.on("host:selectPack", hostAction((packId) => game.selectPack(packId)));
   socket.on("host:lockAndStart", hostAction(() => game.lockRegistrationAndStartRound1()));
   socket.on("host:startQuestion", hostAction(() => game.startQuestion()));
   socket.on("host:forceReveal", hostAction(() => game.forceReveal()));
