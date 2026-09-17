@@ -8,7 +8,10 @@ const { Server } = require("socket.io");
 const { GameState } = require("./gameState");
 
 const PORT = process.env.PORT || 3000;
-const HOST_KEY = process.env.HOST_KEY || crypto.randomBytes(3).toString("hex").toUpperCase();
+// A gate against randomly poking the moderator controls, not a real secret —
+// fine as a fixed default even in a public repo. Override with a HOST_KEY
+// env var if you ever want a different one without editing code.
+const HOST_KEY = process.env.HOST_KEY || "QUEENSMOD2025";
 
 const app = express();
 const httpServer = createServer(app);
