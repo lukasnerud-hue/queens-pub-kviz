@@ -1,0 +1,20 @@
+{
+  "name": "queens-pub-kviz",
+  "version": "1.0.0",
+  "description": "Hospodský kvíz pro Queen's Pub Brno — moderátor, TV obrazovka a hráči na telefonech přes web.",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "@fontsource/montserrat": "^5.3.0",
+    "qrcode-generator": "^2.0.4"
+  }
+}

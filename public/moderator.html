@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moderátor — Queen's Pub Kvíz</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .mod-wrap {
+      width: 100%;
+      max-width: 760px;
+      text-align: left;
+    }
+    .mod-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--gap-2);
+      margin-bottom: var(--gap-3);
+      flex-wrap: wrap;
+    }
+    .pin-pill {
+      background: var(--bg-card);
+      border: 1px solid rgba(234, 170, 89, 0.4);
+      border-radius: var(--radius);
+      padding: 8px 16px;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+    }
+    .kick-btn {
+      background: transparent;
+      border: 1px solid rgba(200, 84, 63, 0.5);
+      color: #f0a494;
+      border-radius: var(--radius);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    .panel {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: var(--gap-3);
+      margin-bottom: var(--gap-3);
+      border: 1px solid rgba(245, 241, 230, 0.08);
+    }
+    .footer-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--gap-4);
+    }
+    .mod-preview-q {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .mod-preview-opt {
+      padding: 8px 12px;
+      background: var(--bg-deep);
+      border-radius: var(--radius);
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="screen" id="app" style="align-items:center;">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/util.js"></script>
+  <script src="/js/moderator.js"></script>
+</body>
+</html>
